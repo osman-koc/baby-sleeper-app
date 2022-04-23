@@ -1,7 +1,7 @@
 {
     "appName": "Baby Sleeper",
     "audio_vacuumcleaner": "Vacuum Cleaner",
-    "pressForHelp": "Press the button for help.",
+    "pressForHelp": "Press the button for play.",
     "pressForStop": "Press it again to stop.",
     "buttonTextPlay": "Play",
     "buttonTextStop": "Stop",
