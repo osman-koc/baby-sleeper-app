@@ -6,6 +6,7 @@ class ConstVoice {
     'pispis_kolik.mp3',
     'vacuum_cleaner.mp3',
     'washing_machine.mp3',
-    'woot_sailorman.mp3'
+    'woot_sailorman.mp3',
+    'smile_baby.mp3'
   ];
 }

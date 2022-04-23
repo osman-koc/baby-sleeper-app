@@ -83,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       AppLocalizations.of(context).translate('audio_vacuumcleaner'),
       AppLocalizations.of(context).translate('audio_washingmachine'),
       AppLocalizations.of(context).translate('audio_wootsailorman'),
+      AppLocalizations.of(context).translate('audio_smilebaby'),
     ];
     return Scaffold(
       appBar: AppBar(
