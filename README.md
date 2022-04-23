@@ -1,6 +1,6 @@
-# babysleeper
+# Baby Sleeper
 
-A new Flutter project.
+It is a mobile application developed with Flutter. It helps the baby to sleep. Without pausing, sounds will play to put the baby to sleep.
 
 ## Getting Started
 
