@@ -109,78 +109,101 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ButtonTheme(
-              padding: const EdgeInsets.all(40.0),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100)),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.blueGrey,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 35, vertical: 20)),
-                onPressed: () => setState(() {
-                  isPlaying = !isPlaying;
-                  playLocal(ConstVoice.getAll[selectedVoiceIndex])
-                      .then((value) => (null));
-                }),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(getButtonImage(), width: 160),
-                    Text(
-                      getButtonText(),
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18
-                      )
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(5.0),
-              child: DropdownButton<String>(
-                value: voiceNames[selectedVoiceIndex],
-                items: voiceNames.map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value, style: const TextStyle(fontSize: 16)),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedVoiceIndex = voiceNames.indexOf(value!);
-                    isPlaying = false;
-                    playLocal(ConstVoice.getAll[selectedVoiceIndex])
-                        .then((value) => (null));
-                  });
-                },
-                style: const TextStyle(color: Colors.black87, fontSize: 20),
-              ),
-            ),
-            Text(
-              '\n\n' +
-                  AppLocalizations.of(context).translate('pressForHelp') +
-                  '\n' +
-                  AppLocalizations.of(context).translate('pressForStop'),
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-            ),
+            playButton(),
+            audioDropdown(voiceNames),
+            descriptionTexts(context),
             const Padding(padding: EdgeInsets.only(top: 50.0)),
-            Text(
-              AppLocalizations.of(context).translate('copyright'),
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 10.0,
-              ),
-            ),
+            footerText(context),
           ],
         ),
       ),
     );
   }
+
+  Text footerText(BuildContext context) {
+    return Text(
+            AppLocalizations.of(context).translate('copyright'),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.black87,
+              fontSize: 10.0,
+            ),
+          );
+  }
+
+  Text descriptionTexts(BuildContext context) {
+    return Text(
+            '\n\n' +
+                AppLocalizations.of(context).translate('pressForHelp') +
+                '\n' +
+                AppLocalizations.of(context).translate('pressForStop'),
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+          );
+  }
+
+  Container audioDropdown(List<String> voiceNames) {
+    return Container(
+            padding: const EdgeInsets.all(5.0),
+            child: DropdownButton<String>(
+              value: voiceNames[selectedVoiceIndex],
+              items: voiceNames.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value, style: const TextStyle(fontSize: 16)),
+                );
+              }).toList(),
+              onChanged: (value) {
+                setState(() {
+                  selectedVoiceIndex = voiceNames.indexOf(value!);
+                  isPlaying = false;
+                  playLocal(ConstVoice.getAll[selectedVoiceIndex])
+                      .then((value) => (null));
+                });
+              },
+              style: const TextStyle(color: Colors.black87, fontSize: 20),
+            ),
+          );
+  }
+
+  ButtonTheme playButton() {
+    return ButtonTheme(
+            padding: const EdgeInsets.all(30.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(100),
+            ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blueGrey,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+              ),
+              onPressed: buttonClickEvent,
+              child: buttonContent(),
+            ),
+          );
+  }
+
+  Column buttonContent() {
+    return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(getButtonImage(), width: 160),
+                  const Padding(padding: EdgeInsets.all(8)),
+                  Text(
+                    getButtonText(),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(color: Colors.white, fontSize: 18),
+                  )
+                ],
+              );
+  }
+
+  void buttonClickEvent() => setState(() {
+                isPlaying = !isPlaying;
+                playLocal(ConstVoice.getAll[selectedVoiceIndex])
+                    .then((value) => (null));
+              });
 
   String getButtonImage() => isPlaying ? imgActive : imgPassive;
 
