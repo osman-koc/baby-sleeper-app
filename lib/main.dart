@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'constants/const_voice.dart';
 
 void main() {
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Baby Sleeper',
       theme: ThemeData(
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
@@ -61,12 +60,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final imgActive = ConstAsset.playButtonActive;
+  final imgPassive = ConstAsset.playButtonPassive;
   var audioPlayer = AudioPlayer();
   var isPlaying = false;
   int selectedVoiceIndex = 0;
-
-  final imgActive = ConstAsset.playButtonActive;
-  final imgPassive = ConstAsset.playButtonPassive;
 
   @override
   void initState() {
@@ -81,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
       final dir = await getApplicationDocumentsDirectory();
       final file = File('${dir.path}/$localFileName');
       if (!(await file.exists())) {
-        final soundData = await rootBundle.load(ConstAsset.getAudioLocalPath(localFileName));
+        final soundData =
+            await rootBundle.load(ConstAsset.getAudioLocalPath(localFileName));
         final bytes = soundData.buffer.asUint8List();
         await file.writeAsBytes(bytes, flush: true);
       }
@@ -109,6 +108,10 @@ class _MyHomePageState extends State<MyHomePage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(100)),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.blueGrey,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 35, vertical: 20)),
                 onPressed: () => setState(() {
                   isPlaying = !isPlaying;
                   playLocal(ConstVoice.getAll[selectedVoiceIndex])
@@ -117,9 +120,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(isPlaying ? imgActive : imgPassive, width: 160),
-                    Text(AppLocalizations.of(context).translate('buttonText'),
-                        style: const TextStyle(color: Colors.white))
+                    Image.asset(getButtonImage(), width: 160),
+                    Text(
+                      getButtonText(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                      )
+                    )
                   ],
                 ),
               ),
@@ -166,5 +174,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  String getButtonImage() => isPlaying ? imgActive : imgPassive;
+
+  String getButtonText() {
+    return isPlaying
+        ? AppLocalizations.of(context).translate('buttonTextStop')
+        : AppLocalizations.of(context).translate('buttonTextPlay');
   }
 }
