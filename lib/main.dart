@@ -93,7 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     List<String> voiceNames = <String>[
+      AppLocalizations.of(context).translate('audio_dandinidastana'),
+      AppLocalizations.of(context).translate('audio_justmusic'),
+      AppLocalizations.of(context).translate('audio_lullaby'),
+      AppLocalizations.of(context).translate('audio_pispiskolik'),
       AppLocalizations.of(context).translate('audio_vacuumcleaner'),
+      AppLocalizations.of(context).translate('audio_washingmachine'),
+      AppLocalizations.of(context).translate('audio_wootsailorman'),
     ];
     return Scaffold(
       appBar: AppBar(

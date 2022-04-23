@@ -1,9 +1,15 @@
 {
     "appName": "Bebek Uyutucu",
-    "audio_vacuumcleaner": "Elektrikli Süpürge",
     "pressForHelp": "Sesi çalmak için butona basın.",
     "pressForStop": "Durdurmak için tekrar basın.",
     "buttonTextPlay": "Başlat",
     "buttonTextStop": "Durdur",
+    "audio_vacuumcleaner": "Elektrikli Süpürge",
+    "audio_washingmachine": "Çamaşır Makinesi",
+    "audio_pispiskolik": "Pış Pış Kolik",
+    "audio_dandinidastana": "Dandini Dastana",
+    "audio_wootsailorman": "Kayıkçı (İngilizce)",
+    "audio_lullaby": "Ninni (İngilizce)",
+    "audio_justmusic": "Sadece Müzik",
     "copyright": "© 2022 Osman KOÇ \n osmkoc.com"
 }

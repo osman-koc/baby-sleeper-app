@@ -1,9 +1,15 @@
 {
     "appName": "Baby Sleeper",
-    "audio_vacuumcleaner": "Vacuum Cleaner",
     "pressForHelp": "Press the button for play.",
     "pressForStop": "Press it again to stop.",
     "buttonTextPlay": "Play",
     "buttonTextStop": "Stop",
+    "audio_vacuumcleaner": "Vacuum Cleaner",
+    "audio_washingmachine": "Washing Machine",
+    "audio_pispiskolik": "Suggested by Pedagogues",
+    "audio_dandinidastana": "Dandini Dastana (TR)",
+    "audio_wootsailorman": "Woot Woot Sailorman",
+    "audio_lullaby": "Lullaby",
+    "audio_justmusic": "Just Music",
     "copyright": "© 2022 Osman KOÇ \n osmkoc.com"
 }
