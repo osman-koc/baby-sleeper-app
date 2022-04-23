@@ -44,8 +44,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.osmankoc.babysleeper"
-        minSdkVersion 26 //flutter.minSdkVersion
-        targetSdkVersion 30 //flutter.targetSdkVersion
+        minSdkVersion flutter.minSdkVersion //26
+        targetSdkVersion flutter.targetSdkVersion //30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
