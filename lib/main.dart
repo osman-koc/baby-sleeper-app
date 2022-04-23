@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       getButtonText(),
                       style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 20
+                          fontSize: 18
                       )
                     )
                   ],

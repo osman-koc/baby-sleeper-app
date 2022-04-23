@@ -1,4 +1,4 @@
-package com.example.babysleeper
+package com.osmankoc.babysleeper
 
 import io.flutter.embedding.android.FlutterActivity
 
