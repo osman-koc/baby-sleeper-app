@@ -5,6 +5,8 @@ import 'package:babysleeper/app_localizations.dart';
 import 'package:babysleeper/constants/const_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:path_provider/path_provider.dart';
@@ -67,35 +69,50 @@ class _MyHomePageState extends State<MyHomePage> {
   var isPlaying = false;
   int selectedVoiceIndex = 0;
 
+  final _numberInput = TextEditingController(text: '0');
+  CountdownTimerController? timerController;
+  bool timerIsActive = false;
+  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
+
   @override
   void initState() {
     super.initState();
     isPlaying = audioPlayer.state == PlayerState.PLAYING;
+
+    // timerIsActive = true;
+    // timerController =
+    //     CountdownTimerController(endTime: endTime, onEnd: timerOnEnd);
+  }
+
+  @override
+  void dispose() {
+    timerController?.dispose();
+    super.dispose();
+  }
+
+  void timerOnEnd() {
+    Navigator.of(context).pop();
+    _numberInput.text = '0';
+    timerIsActive = false;
+    timerController?.disposeTimer();
+    buttonClickEvent();
   }
 
   @override
   Widget build(BuildContext context) {
-    List<String> voiceNames = <String>[
-      AppLocalizations.of(context).translate('audio_dandinidastana'),
-      AppLocalizations.of(context).translate('audio_justmusic'),
-      AppLocalizations.of(context).translate('audio_lullaby'),
-      AppLocalizations.of(context).translate('audio_pispiskolik'),
-      AppLocalizations.of(context).translate('audio_vacuumcleaner'),
-      AppLocalizations.of(context).translate('audio_washingmachine'),
-      AppLocalizations.of(context).translate('audio_wootsailorman'),
-      AppLocalizations.of(context).translate('audio_smilebaby'),
-    ];
+    List<String> _voiceNames = ConstVoice.getAllNames(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).translate('appName')),
       ),
-      //floatingActionButton: playTimerModalButton(context),
+      floatingActionButton: playTimerModalButton(context),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             playButton(),
-            audioDropdown(voiceNames),
+            audioDropdown(_voiceNames),
             descriptionTexts(context),
             const Padding(padding: EdgeInsets.only(top: 50.0)),
             footerText(context),
@@ -135,6 +152,14 @@ class _MyHomePageState extends State<MyHomePage> {
   /* FILE METHODS */
 
   /* THEME METHODS */
+  CountdownTimer timerCountWidget() {
+    return CountdownTimer(
+      controller: timerController,
+      onEnd: timerOnEnd,
+      endTime: endTime,
+    );
+  }
+
   Text footerText(BuildContext context) {
     return Text(
       AppLocalizations.of(context).translate('copyright'),
@@ -172,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
           setState(() {
             selectedVoiceIndex = voiceNames.indexOf(value!);
             isPlaying = false;
-            playLocal(ConstVoice.getAll[selectedVoiceIndex])
+            playLocal(ConstVoice.getAllPathes[selectedVoiceIndex])
                 .then((value) => (null));
           });
         },
@@ -182,38 +207,70 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   FloatingActionButton playTimerModalButton(BuildContext context) {
-    return FloatingActionButton(
+    return FloatingActionButton.extended(
+      label: const Text('Set Timer'),
+      icon: const Icon(Icons.timer),
       onPressed: () {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Close after this time (min)'),
-              content: inputMinuteForTimerInModal(context),
-              actions: <Widget>[
-                TextButton(
-                  child: const Text('Reset'),
-                  onPressed: () {
-                    _numberInput.text = '0';
-                  },
-                ),
-                TextButton(
-                  child: const Text('OK'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            );
-          },
+        timerShowDialog(context);
+      },
+    );
+    // return FloatingActionButton(
+    //   onPressed: () {
+    //    timerSettingsShowDialog(context);
+    //   },
+    //   child: const Icon(Icons.timer),
+    //   tooltip: 'Set Timer',
+    // );
+  }
+
+  void timerShowDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Close after this time (min)'),
+          content: timerIsActive
+              ? timerCountWidget()
+              : inputMinuteForTimerInModal(context),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            timerIsActive
+                ? TextButton(
+                    child: const Text('Reset'),
+                    onPressed: () {
+                      timerOnEnd();
+                      Navigator.of(context).pop();
+                    },
+                  )
+                : TextButton(
+                    child: const Text('OK'),
+                    onPressed: () {
+                      setTimerMinute();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+          ],
         );
       },
-      child: const Icon(Icons.timer),
-      tooltip: 'Set Timer',
     );
   }
 
-  final _numberInput = TextEditingController(text: '0');
+  setTimerMinute() {
+    if (int.parse(_numberInput.text) > 0) {
+      endTime = DateTime.now().millisecondsSinceEpoch +
+          1000 * 60 * int.parse(_numberInput.text);
+      timerController =
+          CountdownTimerController(endTime: endTime, onEnd: timerOnEnd);
+      timerIsActive = true;
+    } else {
+      timerIsActive = false;
+    }
+  }
 
   Widget inputMinuteForTimerInModal(BuildContext context) {
     return NumberInputWithIncrementDecrement(
@@ -266,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void buttonClickEvent() => setState(() {
         isPlaying = !isPlaying;
-        playLocal(ConstVoice.getAll[selectedVoiceIndex])
+        playLocal(ConstVoice.getAllPathes[selectedVoiceIndex])
             .then((value) => (null));
       });
   /* THEME METHODS */
