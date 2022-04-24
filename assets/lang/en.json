@@ -1,6 +1,6 @@
 {
     "appName": "Baby Sleeper",
-    "pressForHelp": "Press the button for play.",
+    "pressForPlay": "Press the button for play.",
     "pressForStop": "Press it again to stop.",
     "buttonTextPlay": "Play",
     "buttonTextStop": "Stop",

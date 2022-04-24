@@ -91,10 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void timerOnEnd() {
-    Navigator.of(context).pop();
-    _numberInput.text = '0';
-    timerIsActive = false;
     timerController?.disposeTimer();
+    timerIsActive = false;
+    _numberInput.text = '0';
     buttonClickEvent();
   }
 
@@ -174,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Text descriptionTexts(BuildContext context) {
     return Text(
       '\n\n' +
-          AppLocalizations.of(context).translate('pressForHelp') +
+          AppLocalizations.of(context).translate('pressForPlay') +
           '\n' +
           AppLocalizations.of(context).translate('pressForStop'),
       textAlign: TextAlign.center,
@@ -236,15 +235,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ? TextButton(
                     child: Text(AppLocalizations.of(context).translate('reset')),
                     onPressed: () {
-                      timerOnEnd();
                       Navigator.of(context).pop();
+                      timerOnEnd();
                     },
                   )
                 : TextButton(
                     child: Text(AppLocalizations.of(context).translate('ok')),
                     onPressed: () {
-                      setTimerMinute();
                       Navigator.of(context).pop();
+                      setTimerMinute();
                     },
                   ),
           ],
