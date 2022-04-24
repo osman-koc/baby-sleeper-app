@@ -8,7 +8,7 @@
     "reset": "Reset",
     "ok": "OK",
     "set_timer": "Set Timer",
-    "close_timer_text": "Close after this time (min)",
+    "timer_expire_text": "The current time has expired.",
     "audio_vacuumcleaner": "Vacuum Cleaner",
     "audio_washingmachine": "Washing Machine",
     "audio_pispiskolik": "Suggested by Pedagogues",

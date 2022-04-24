@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:babysleeper/app_localizations.dart';
 import 'package:babysleeper/constants/const_asset.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:path_provider/path_provider.dart';
 import 'constants/const_voice.dart';
 
@@ -69,19 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
   var isPlaying = false;
   int selectedVoiceIndex = 0;
 
-  final _numberInput = TextEditingController(text: '0');
   CountdownTimerController? timerController;
   bool timerIsActive = false;
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
+  int _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
+  Duration _initialtimer = const Duration();
 
   @override
   void initState() {
     super.initState();
     isPlaying = audioPlayer.state == PlayerState.PLAYING;
-
-    // timerIsActive = true;
-    // timerController =
-    //     CountdownTimerController(endTime: endTime, onEnd: timerOnEnd);
   }
 
   @override
@@ -92,8 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void timerOnEnd() {
     timerController?.disposeTimer();
+    _initialtimer = const Duration();
     timerIsActive = false;
-    _numberInput.text = '0';
+    isPlaying = !timerIsActive;
     buttonClickEvent();
   }
 
@@ -121,7 +118,6 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  /* FILE METHODS */
   Future playLocal(localFileName) async {
     if (!isPlaying) {
       await audioPlayer.stop();
@@ -148,14 +144,14 @@ class _MyHomePageState extends State<MyHomePage> {
     final bytes = soundData.buffer.asUint8List();
     await file.writeAsBytes(bytes, flush: true);
   }
-  /* FILE METHODS */
 
-  /* THEME METHODS */
-  CountdownTimer timerCountWidget() {
+  CountdownTimer counterTextWidget() {
     return CountdownTimer(
       controller: timerController,
       onEnd: timerOnEnd,
-      endTime: endTime,
+      endTime: _endTime,
+      textStyle: const TextStyle(fontSize: 28.0),
+      endWidget: Text(AppLocalizations.of(context).translate('timer_expire_text')),
     );
   }
 
@@ -215,63 +211,104 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void timerShowDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(AppLocalizations.of(context).translate('close_timer_text')),
-          content: timerIsActive
-              ? timerCountWidget()
-              : inputMinuteForTimerInModal(context),
-          actions: <Widget>[
-            TextButton(
-              child: Text(AppLocalizations.of(context).translate('cancel')),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            timerIsActive
-                ? TextButton(
-                    child: Text(AppLocalizations.of(context).translate('reset')),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      timerOnEnd();
-                    },
-                  )
-                : TextButton(
-                    child: Text(AppLocalizations.of(context).translate('ok')),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      setTimerMinute();
-                    },
-                  ),
-          ],
-        );
-      },
-    );
-  }
-
   setTimerMinute() {
-    if (int.parse(_numberInput.text) > 0) {
-      endTime = DateTime.now().millisecondsSinceEpoch +
-          1000 * 60 * int.parse(_numberInput.text);
+    if (_initialtimer.inMilliseconds > 0) {
+      int minutes = _initialtimer.inMinutes;
+      _endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 60 * minutes;
       timerController =
-          CountdownTimerController(endTime: endTime, onEnd: timerOnEnd);
+          CountdownTimerController(endTime: _endTime, onEnd: timerOnEnd);
       timerIsActive = true;
     } else {
       timerIsActive = false;
     }
+    isPlaying = !timerIsActive;
+    buttonClickEvent();
   }
 
-  Widget inputMinuteForTimerInModal(BuildContext context) {
-    return NumberInputWithIncrementDecrement(
-        controller: _numberInput,
-        scaleWidth: 1,
-        scaleHeight: 1,
-        initialValue: 0,
-        min: 0,
-        isInt: true);
+  void timerShowDialog(BuildContext context) {
+    showModalBottomSheet(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      backgroundColor: Colors.white,
+      context: context,
+      builder: (builder) {
+        return SizedBox(
+          height: MediaQuery.of(context).copyWith().size.height /
+              (timerIsActive ? 5 : 2),
+          child: Column(
+            children: [
+              timerIsActive
+                  ? Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          counterTextWidget(),
+                        ],
+                      ),
+                    )
+                  : timerPickerWidget(),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  cancelButton(context),
+                  okResetButton(context),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    // .whenComplete(() {
+    //   print(_initialtimer.toString());
+    // });
+  }
+
+  CupertinoTimerPicker timerPickerWidget() {
+    return CupertinoTimerPicker(
+      mode: CupertinoTimerPickerMode.hm,
+      minuteInterval: 1,
+      secondInterval: 1,
+      initialTimerDuration: _initialtimer,
+      onTimerDurationChanged: (Duration changedtimer) {
+        setState(() {
+          _initialtimer = changedtimer;
+        });
+      },
+    );
+  }
+
+  TextButton okResetButton(BuildContext context) {
+    if (timerIsActive) {
+      return TextButton(
+        child: Text(AppLocalizations.of(context).translate('reset')),
+        onPressed: () {
+          Navigator.of(context).pop();
+          timerOnEnd();
+        },
+      );
+    } else {
+      return TextButton(
+        child: Text(AppLocalizations.of(context).translate('ok')),
+        onPressed: () {
+          Navigator.of(context).pop();
+          setTimerMinute();
+        },
+      );
+    }
+  }
+
+  TextButton cancelButton(BuildContext context) {
+    return TextButton(
+      child: Text(AppLocalizations.of(context).translate('cancel')),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
   }
 
   ButtonTheme playButton() {
@@ -318,5 +355,4 @@ class _MyHomePageState extends State<MyHomePage> {
         playLocal(ConstVoice.getAllPathes[selectedVoiceIndex])
             .then((value) => (null));
       });
-  /* THEME METHODS */
 }

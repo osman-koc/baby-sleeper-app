@@ -8,7 +8,7 @@
     "reset": "Sıfırla",
     "ok": "Tamam",
     "set_timer": "Zaman Ayarı",
-    "close_timer_text": "Şu sürenin sonunda kapat (dk)",
+    "timer_expired_text": "Ayarlanan süre tamamlandı.",
     "audio_vacuumcleaner": "Elektrikli Süpürge",
     "audio_washingmachine": "Çamaşır Makinesi",
     "audio_pispiskolik": "Pış Pış Kolik",
