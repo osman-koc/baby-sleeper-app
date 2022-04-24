@@ -208,19 +208,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   FloatingActionButton playTimerModalButton(BuildContext context) {
     return FloatingActionButton.extended(
-      label: const Text('Set Timer'),
+      label: Text(AppLocalizations.of(context).translate('set_timer')),
       icon: const Icon(Icons.timer),
       onPressed: () {
         timerShowDialog(context);
       },
     );
-    // return FloatingActionButton(
-    //   onPressed: () {
-    //    timerSettingsShowDialog(context);
-    //   },
-    //   child: const Icon(Icons.timer),
-    //   tooltip: 'Set Timer',
-    // );
   }
 
   void timerShowDialog(BuildContext context) {
@@ -228,27 +221,27 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Close after this time (min)'),
+          title: Text(AppLocalizations.of(context).translate('close_timer_text')),
           content: timerIsActive
               ? timerCountWidget()
               : inputMinuteForTimerInModal(context),
           actions: <Widget>[
             TextButton(
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context).translate('cancel')),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             timerIsActive
                 ? TextButton(
-                    child: const Text('Reset'),
+                    child: Text(AppLocalizations.of(context).translate('reset')),
                     onPressed: () {
                       timerOnEnd();
                       Navigator.of(context).pop();
                     },
                   )
                 : TextButton(
-                    child: const Text('OK'),
+                    child: Text(AppLocalizations.of(context).translate('ok')),
                     onPressed: () {
                       setTimerMinute();
                       Navigator.of(context).pop();
@@ -284,14 +277,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ButtonTheme playButton() {
     return ButtonTheme(
-      padding: const EdgeInsets.all(30.0),
+      padding: const EdgeInsets.all(20.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.blueGrey,
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 20),
         ),
         onPressed: buttonClickEvent,
         child: buttonContent(),
@@ -303,7 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(getButtonImage(), width: 160),
+        Image.asset(getButtonImage(), width: 130),
         const Padding(padding: EdgeInsets.all(8)),
         Text(
           getButtonText(),
