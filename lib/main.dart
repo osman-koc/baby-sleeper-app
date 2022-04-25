@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
     AppLocalizations.delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    DefaultWidgetsLocalizations.delegate,
   ];
 
   final supportedLocales = [
@@ -151,7 +153,8 @@ class _MyHomePageState extends State<MyHomePage> {
       onEnd: timerOnEnd,
       endTime: _endTime,
       textStyle: const TextStyle(fontSize: 28.0),
-      endWidget: Text(AppLocalizations.of(context).translate('timer_expire_text')),
+      endWidget:
+          Text(AppLocalizations.of(context).translate('timer_expire_text')),
     );
   }
 
