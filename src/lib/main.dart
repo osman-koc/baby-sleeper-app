@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
     GlobalMaterialLocalizations.delegate,
     GlobalWidgetsLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
-    DefaultWidgetsLocalizations.delegate,
   ];
 
   final supportedLocales = [
@@ -40,6 +39,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      darkTheme: ThemeData.light(),
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       supportedLocales: supportedLocales,
       localizationsDelegates: localizationsDelegates,
@@ -65,11 +66,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static bool isPlaying = false;
+  var audioPlayer = AudioPlayer();
+  int selectedVoiceIndex = 0;
+
   final imgActive = ConstAsset.playButtonActive;
   final imgPassive = ConstAsset.playButtonPassive;
-  var audioPlayer = AudioPlayer();
-  var isPlaying = false;
-  int selectedVoiceIndex = 0;
 
   CountdownTimerController? timerController;
   bool timerIsActive = false;
@@ -79,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    isPlaying = audioPlayer.state == PlayerState.PLAYING;
+    isPlaying = audioPlayer.state == PlayerState.playing;
   }
 
   @override
@@ -123,10 +125,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Future playLocal(localFileName) async {
     if (!isPlaying) {
       await audioPlayer.stop();
+      timerIsActive = false;
     } else {
       String filePath = await getSoundFilePath(localFileName);
-      await audioPlayer.setUrl(filePath, isLocal: true);
-      await audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+      await audioPlayer.setSourceUrl(filePath);
+      await audioPlayer.setReleaseMode(ReleaseMode.loop);
       await audioPlayer.resume();
     }
   }
@@ -266,9 +269,6 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
-    // .whenComplete(() {
-    //   print(_initialtimer.toString());
-    // });
   }
 
   CupertinoTimerPicker timerPickerWidget() {
@@ -322,7 +322,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey,
           padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 20),
         ),
         onPressed: buttonClickEvent,
@@ -353,9 +353,15 @@ class _MyHomePageState extends State<MyHomePage> {
         : AppLocalizations.of(context).translate('buttonTextPlay');
   }
 
-  void buttonClickEvent() => setState(() {
+  void buttonClickEvent() {
+    try {
+      setState(() {
         isPlaying = !isPlaying;
         playLocal(ConstVoice.getAllPathes[selectedVoiceIndex])
             .then((value) => (null));
       });
+    } catch (e) {
+      isPlaying = false;
+    }
+  }
 }

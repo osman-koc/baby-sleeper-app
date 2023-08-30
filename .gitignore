@@ -779,3 +779,5 @@ app.*.symbols
 app.*.map.json
 
 android/app/google-services.json
+
+local.properties
