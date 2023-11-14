@@ -10,7 +10,8 @@ class ConstVoice {
     'vacuum_cleaner.mp3',
     'washing_machine.mp3',
     'woot_sailorman.mp3',
-    'smile_baby.mp3'
+    'smile_baby.mp3',
+    'leigha_marina_lullaby.mp3'
   ];
 
   static List<String> getAllNames(BuildContext context) {
@@ -23,6 +24,7 @@ class ConstVoice {
       AppLocalizations.of(context).translate('audio_washingmachine'),
       AppLocalizations.of(context).translate('audio_wootsailorman'),
       AppLocalizations.of(context).translate('audio_smilebaby'),
+      AppLocalizations.of(context).translate('audio_leighamarina'),
     ];
   }
 }
