@@ -1,5 +1,14 @@
 {
     "app_name": "Bebek Uyutucu",
+    "app_developer": "Osman Koç",
+    "app_website": "www.osmkoc.com",
+    "app_email": "info@osmkoc.com",
+    "home": "Ana sayfa",
+    "about": "Hakkında",
+    "about_app_title": "Uygulama Hakkında",
+    "developedby": "Geliştiren",
+    "contact": "İletişim",
+    "close": "Kapat",
     "pressForPlay": "Sesi çalmak için butona basın.",
     "pressForStop": "Durdurmak için tekrar basın.",
     "buttonTextPlay": "Başlat",
@@ -18,5 +27,6 @@
     "audio_justmusic": "Sadece Müzik",
     "audio_smilebaby": "Can Bebek Güleç Bebek",
     "audio_leighamarina": "Ninni (Leigha Marina)",
-    "copyright": "© 2022 Osman KOÇ \n osmkoc.com"
+    "copyright": "© 2022 Osman KOÇ \n osmkoc.com",
+    "welcome": "Hoş geldiniz"
 }

@@ -1,5 +1,14 @@
 {
     "app_name": "Baby Sleeper",
+    "app_developer": "Osman Koç",
+    "app_website": "www.osmkoc.com",
+    "app_email": "info@osmkoc.com",
+    "home": "Home",
+    "about": "About",
+    "about_app_title": "About App",
+    "developedby": "Developed by",
+    "contact": "Contact",
+    "close": "Close",
     "pressForPlay": "Press the button for play.",
     "pressForStop": "Press it again to stop.",
     "buttonTextPlay": "Play",
@@ -18,5 +27,6 @@
     "audio_justmusic": "Just Music",
     "audio_smilebaby": "Smile Baby (TR)",
     "audio_leighamarina": "Lullaby by Leigha Marina",
-    "copyright": "© 2022 Osman KOÇ \n osmkoc.com"
+    "copyright": "© 2022 Osman KOÇ \n osmkoc.com",
+    "welcome": "Welcome"
 }

@@ -54,6 +54,8 @@ class AppLangTranslations {
   String get cancel => _appLocalizations.translate(key: 'cancel');
   String get buttonTextStop => _appLocalizations.translate(key: 'buttonTextStop');
   String get buttonTextPlay => _appLocalizations.translate(key: 'buttonTextPlay');
+  String get welcome => _appLocalizations.translate(key: 'welcome');
+  String get home => _appLocalizations.translate(key: 'home');
 }
 
 extension AppLangContextExtension on BuildContext {

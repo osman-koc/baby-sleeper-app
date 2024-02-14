@@ -4,6 +4,7 @@ import 'package:babysleeper/constants/const_asset.dart';
 import 'package:babysleeper/constants/const_voice.dart';
 import 'package:babysleeper/extensions/app_lang.dart';
 import 'package:babysleeper/helpers/file_helper.dart';
+import 'package:babysleeper/screens/components/side_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -54,9 +55,11 @@ class _MyHomePageState extends State<MyHomePage> {
     List<String> voiceNames = ConstVoice.getAllNames(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.translate.appName),
-      ),
+      // appBar: AppBar(
+      //   title: Text(context.translate.appName),
+      // ),
+      appBar: _buildAppBar(),
+      drawer: const SideMenu(),
       floatingActionButton: playTimerModalButton(context),
       body: Center(
         child: Column(
@@ -66,10 +69,18 @@ class _MyHomePageState extends State<MyHomePage> {
             audioDropdown(voiceNames),
             descriptionTexts(context),
             const Padding(padding: EdgeInsets.only(top: 50.0)),
-            footerText(context),
           ],
         ),
       ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: AppColors(context).appDefaultTextColor,
+      elevation: 0,
+      iconTheme: IconThemeData(color: AppColors(context).appDefaultBgColor),
+      title: Text(context.translate.appName),
     );
   }
 
@@ -92,17 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
       endTime: _endTime,
       textStyle: const TextStyle(fontSize: 28.0),
       endWidget: Text(context.translate.timerExpireText),
-    );
-  }
-
-  Text footerText(BuildContext context) {
-    return Text(
-      context.translate.copyright,
-      textAlign: TextAlign.center,
-      style: TextStyle(
-        color: AppColors(context).dropdownButtonBg,
-        fontSize: 10.0,
-      ),
     );
   }
 
