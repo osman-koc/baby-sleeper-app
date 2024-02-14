@@ -5,8 +5,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:babysleeper/constants/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AboutScreenPopup extends StatelessWidget {
-  const AboutScreenPopup({super.key});
+class AboutPopup extends StatelessWidget {
+  const AboutPopup({super.key});
 
   @override
   Widget build(BuildContext context) {

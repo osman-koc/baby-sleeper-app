@@ -1,3 +1,4 @@
+import 'package:babysleeper/screens/popup/my_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:babysleeper/constants/app_assets.dart';
 import 'package:babysleeper/constants/app_colors.dart';
@@ -67,17 +68,31 @@ class _SideMenuState extends State<SideMenu> {
             onTap: () => Navigator.pop(context),
           ),
           ListTile(
-              leading: const Icon(Icons.info_outline),
-              title: Text(context.translate.about),
-              onTap: () {
-                Navigator.of(context).pop();
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return const AboutScreenPopup();
-                  },
-                );
-              }),
+            leading: const Icon(Icons.info_outline),
+            title: Text(context.translate.about),
+            onTap: () {
+              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const AboutPopup();
+                },
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.apps_outlined),
+            title: Text(context.translate.myApps),
+            onTap: () {
+              Navigator.of(context).pop();
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const MyAppsPopup(jsonUrl: "https://osmkoc.com/data/myapps.json");
+                },
+              );
+            },
+          ),
           Divider(color: AppColors(context).appGrey),
         ],
       ),

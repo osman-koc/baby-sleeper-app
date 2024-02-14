@@ -24,6 +24,10 @@ class AppLangTranslations {
   String get developedBy => _appLocalizations.translate(key: 'developedby');
   String get contact => _appLocalizations.translate(key: 'contact');
   String get close => _appLocalizations.translate(key: 'close');
+  String get myApps => _appLocalizations.translate(key: 'my_apps');
+  String get myAppsTitle => _appLocalizations.translate(key: 'my_apps_title');
+  String get dataIsLoading => _appLocalizations.translate(key: 'data_loading');
+  String get dataLoadError => _appLocalizations.translate(key: 'data_load_error');
 
   String get audioDandiniDastana =>
       _appLocalizations.translate(key: 'audio_dandinidastana');

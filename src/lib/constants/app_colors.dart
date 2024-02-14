@@ -11,6 +11,7 @@ class AppColors {
 
   Color get appGrey => Colors.grey;
   Color get appBlue => Colors.blue;
+  Color get appRed => Colors.red;
 
   Color get dropdownButtonBg {
     return isDarkMode ? Colors.white : Colors.black87;

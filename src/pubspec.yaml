@@ -6,7 +6,7 @@ publish_to: "none"
 version: 3.0.0+4
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   audioplayers: ^5.2.1
@@ -16,6 +16,8 @@ dependencies:
   flutter_countdown_timer: ^4.1.0
   flutter_localizations:
     sdk: flutter
+  fluttertoast: ^8.2.4
+  http: ^1.2.0
   number_inc_dec: ^0.8.0
   package_info_plus: ^5.0.1
   path_provider: ^2.1.2
