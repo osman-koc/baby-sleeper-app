@@ -1,8 +1,8 @@
-import 'package:babysleeper/app_localizations.dart';
+import 'package:babysleeper/extensions/app_lang.dart';
 import 'package:flutter/cupertino.dart';
 
 class ConstVoice {
-  static const List<String> getAllPathes = <String>[
+  static const List<String> getAllPaths = <String>[
     'dandini_dastana.mp3',
     'just_music.mp3',
     'lullaby.mp3',
@@ -16,15 +16,15 @@ class ConstVoice {
 
   static List<String> getAllNames(BuildContext context) {
     return <String>[
-      AppLocalizations.of(context).translate('audio_dandinidastana'),
-      AppLocalizations.of(context).translate('audio_justmusic'),
-      AppLocalizations.of(context).translate('audio_lullaby'),
-      AppLocalizations.of(context).translate('audio_pispiskolik'),
-      AppLocalizations.of(context).translate('audio_vacuumcleaner'),
-      AppLocalizations.of(context).translate('audio_washingmachine'),
-      AppLocalizations.of(context).translate('audio_wootsailorman'),
-      AppLocalizations.of(context).translate('audio_smilebaby'),
-      AppLocalizations.of(context).translate('audio_leighamarina'),
+      context.translate.audioDandiniDastana,
+      context.translate.audioJustMusic,
+      context.translate.audioLullaby,
+      context.translate.audioPisPiskolik,
+      context.translate.audioVacuumCleaner,
+      context.translate.audioWashingMachine,
+      context.translate.audioWootsailorman,
+      context.translate.audioSmileBaby,
+      context.translate.audioLeighaMarina,
     ];
   }
 }

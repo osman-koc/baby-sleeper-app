@@ -5,19 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class AppLocalizations {
-  late final Locale? locale;
-  
+  final Locale locale;
+  AppLocalizations(this.locale);
+
+  static AppLocalizations of(BuildContext context) {
+    var localeOf =
+        Localizations.of<AppLocalizations>(context, AppLocalizations);
+    if (localeOf != null) {
+      return localeOf;
+    } else {
+      return AppLocalizations(const Locale('tr', 'TR'));
+    }
+  }
+
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
-  
-  static AppLocalizations of(BuildContext context) =>
-      Localizations.of<AppLocalizations>(context, AppLocalizations) ?? AppLocalizations();
 
-  late Map<String, String> _localizedStrings;
+  Map<String, String> _localizedStrings = <String, String>{};
 
   Future<bool> load() async {
-    String jsonString = await rootBundle
-        .loadString('assets/lang/${locale?.languageCode ?? 'tr'}.json');
+    String jsonString =
+        await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
 
     Map<String, dynamic> jsonMap = json.decode(jsonString);
 
@@ -28,8 +36,8 @@ class AppLocalizations {
     return true;
   }
 
-  String translate(String key) {
-    return _localizedStrings[key] ?? key;
+  String translate({required String key}) {
+    return _localizedStrings[key].toString();
   }
 }
 
@@ -44,8 +52,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    var localizations = AppLocalizations();
-    localizations.locale = locale;
+    var localizations = AppLocalizations(locale);
     await localizations.load();
     return localizations;
   }
