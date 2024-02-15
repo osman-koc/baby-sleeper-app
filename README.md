@@ -11,32 +11,32 @@ Bu uygulama ile bebeklerinizi uyutacağınız müzikleri internete ihtiyaç duym
 ## Screenshot
 ### EN
 <div class="row">
-  <img src="screenshots/en/ss_light_01.jpg" width="100" />
-  <img src="screenshots/en/ss_light_02.jpg" width="100" />
-  <img src="screenshots/en/ss_light_03.jpg" width="100" />
-  <img src="screenshots/en/ss_light_04.jpg" width="100" />
-  <img src="screenshots/en/ss_light_05.jpg" width="100" />
+  <img src="screenshots/en/ss_light_01.jpg" width="120" />
+  <img src="screenshots/en/ss_light_02.jpg" width="120" />
+  <img src="screenshots/en/ss_light_03.jpg" width="120" />
+  <img src="screenshots/en/ss_light_04.jpg" width="120" />
+  <img src="screenshots/en/ss_light_05.jpg" width="120" />
 </div>
 <div class="row">
-  <img src="screenshots/en/ss_dark_01.jpg" width="100" />
-  <img src="screenshots/en/ss_dark_02.jpg" width="100" />
-  <img src="screenshots/en/ss_dark_03.jpg" width="100" />
-  <img src="screenshots/en/ss_dark_04.jpg" width="100" />
-  <img src="screenshots/en/ss_dark_05.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_01.jpg" width="120" />
+  <img src="screenshots/en/ss_dark_02.jpg" width="120" />
+  <img src="screenshots/en/ss_dark_03.jpg" width="120" />
+  <img src="screenshots/en/ss_dark_04.jpg" width="120" />
+  <img src="screenshots/en/ss_dark_05.jpg" width="120" />
 </div>
 
 ### TR
 <div class="row">
-  <img src="screenshots/tr/ss_light_01.jpg" width="100" />
-  <img src="screenshots/tr/ss_light_02.jpg" width="100" />
-  <img src="screenshots/tr/ss_light_03.jpg" width="100" />
-  <img src="screenshots/tr/ss_light_04.jpg" width="100" />
-  <img src="screenshots/tr/ss_light_05.jpg" width="100" />
+  <img src="screenshots/tr/ss_light_01.jpg" width="120" />
+  <img src="screenshots/tr/ss_light_02.jpg" width="120" />
+  <img src="screenshots/tr/ss_light_03.jpg" width="120" />
+  <img src="screenshots/tr/ss_light_04.jpg" width="120" />
+  <img src="screenshots/tr/ss_light_05.jpg" width="120" />
 </div>
 <div class="row">
-  <img src="screenshots/tr/ss_dark_01.jpg" width="100" />
-  <img src="screenshots/tr/ss_dark_02.jpg" width="100" />
-  <img src="screenshots/tr/ss_dark_03.jpg" width="100" />
-  <img src="screenshots/tr/ss_dark_04.jpg" width="100" />
-  <img src="screenshots/tr/ss_dark_05.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_01.jpg" width="120" />
+  <img src="screenshots/tr/ss_dark_02.jpg" width="120" />
+  <img src="screenshots/tr/ss_dark_03.jpg" width="120" />
+  <img src="screenshots/tr/ss_dark_04.jpg" width="120" />
+  <img src="screenshots/tr/ss_dark_05.jpg" width="120" />
 </div>
