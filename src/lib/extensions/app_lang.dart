@@ -6,14 +6,6 @@ class AppLangTranslations {
 
   AppLangTranslations(this._appLocalizations);
 
-  // List<String> audioNames() => [
-  //       this.audioWhistle,
-  //       this.audioCat,
-  //       this.audioSiren,
-  //       this.audioHammer,
-  //       this.audioMorse,
-  //     ];
-
   String get appName => _appLocalizations.translate(key: 'app_name');
   String get appDeveloper => _appLocalizations.translate(key: 'app_developer');
   String get appWebsite => _appLocalizations.translate(key: 'app_website');

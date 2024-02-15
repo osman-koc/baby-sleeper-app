@@ -1,5 +1,6 @@
 class AppAssets {
   static const String appLogo = 'assets/icons/appicon.png';
+  static const String defaultAppIcon = 'assets/icons/default.jpg';
   static const String defaultUserAvatar = 'assets/img/avatar.png';
   static const String playButtonActive = 'assets/img/play-button-active.png';
   static const String playButtonPassive = 'assets/img/play-button-passive.png';

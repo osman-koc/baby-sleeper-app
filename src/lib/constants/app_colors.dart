@@ -10,8 +10,11 @@ class AppColors {
   }
 
   Color get appGrey => Colors.grey;
-  Color get appBlue => Colors.blue;
   Color get appRed => Colors.red;
+
+  Color get appBlue {
+    return isDarkMode ? Colors.blue : const Color.fromARGB(255, 21, 109, 182);
+  }
 
   Color get dropdownButtonBg {
     return isDarkMode ? Colors.white : Colors.black87;

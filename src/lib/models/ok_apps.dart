@@ -2,6 +2,7 @@ class OkAppItem {
   final int id;
   final bool isPublished;
   final String firstPublishDate;
+  final String iconUrl;
   final OkAppName name;
   final OkAppLink links;
 
@@ -9,6 +10,7 @@ class OkAppItem {
     required this.id,
     required this.isPublished,
     required this.firstPublishDate,
+    required this.iconUrl,
     required this.name,
     required this.links,
   });
@@ -18,6 +20,7 @@ class OkAppItem {
       id: json['id'],
       isPublished: json['isPublished'],
       firstPublishDate: json['firstPublishDate'],
+      iconUrl: json['iconUrl'],
       name: OkAppName.fromJson(json['name']),
       links: OkAppLink.fromJson(json['links']),
     );
