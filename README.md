@@ -11,16 +11,16 @@ Bu uygulama ile bebeklerinizi uyutacağınız müzikleri internete ihtiyaç duym
 ## Screenshot
 ### EN
 <div class="row">
-  <img src="screenshots/en/ss_light_01.png" width="100" />
-  <img src="screenshots/en/ss_light_02.png" width="100" />
-  <img src="screenshots/en/ss_light_03.png" width="100" />
-  <img src="screenshots/en/ss_light_04.png" width="100" />
-  <img src="screenshots/en/ss_light_05.png" width="100" />
-  <img src="screenshots/en/ss_dark_01.png" width="100" />
-  <img src="screenshots/en/ss_dark_02.png" width="100" />
-  <img src="screenshots/en/ss_dark_03.png" width="100" />
-  <img src="screenshots/en/ss_dark_04.png" width="100" />
-  <img src="screenshots/en/ss_dark_05.png" width="100" />
+  <img src="screenshots/en/ss_light_01.jpg" width="100" />
+  <img src="screenshots/en/ss_light_02.jpg" width="100" />
+  <img src="screenshots/en/ss_light_03.jpg" width="100" />
+  <img src="screenshots/en/ss_light_04.jpg" width="100" />
+  <img src="screenshots/en/ss_light_05.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_01.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_02.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_03.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_04.jpg" width="100" />
+  <img src="screenshots/en/ss_dark_05.jpg" width="100" />
 </div>
 
 ### TR
