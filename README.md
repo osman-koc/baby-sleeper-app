@@ -11,18 +11,28 @@ Bu uygulama ile bebeklerinizi uyutacağınız müzikleri internete ihtiyaç duym
 ## Screenshot
 ### EN
 <div class="row">
-  <img src="screenshots/en/Screenshot_01.png" width="200" />
-  <img src="screenshots/en/Screenshot_02.png" width="200" />
-  <img src="screenshots/en/Screenshot_03.png" width="200" />
-  <img src="screenshots/en/Screenshot_04.png" width="200" />
-  <img src="screenshots/en/Screenshot_05.png" width="200" />
+  <img src="screenshots/en/ss_light_01.png" width="100" />
+  <img src="screenshots/en/ss_light_02.png" width="100" />
+  <img src="screenshots/en/ss_light_03.png" width="100" />
+  <img src="screenshots/en/ss_light_04.png" width="100" />
+  <img src="screenshots/en/ss_light_05.png" width="100" />
+  <img src="screenshots/en/ss_dark_01.png" width="100" />
+  <img src="screenshots/en/ss_dark_02.png" width="100" />
+  <img src="screenshots/en/ss_dark_03.png" width="100" />
+  <img src="screenshots/en/ss_dark_04.png" width="100" />
+  <img src="screenshots/en/ss_dark_05.png" width="100" />
 </div>
 
 ### TR
 <div class="row">
-  <img src="screenshots/tr/Screenshot_01.jpg" width="200" />
-  <img src="screenshots/tr/Screenshot_02.jpg" width="200" />
-  <img src="screenshots/tr/Screenshot_03.jpg" width="200" />
-  <img src="screenshots/tr/Screenshot_04.jpg" width="200" />
-  <img src="screenshots/tr/Screenshot_05.jpg" width="200" />
+  <img src="screenshots/tr/ss_light_01.jpg" width="100" />
+  <img src="screenshots/tr/ss_light_02.jpg" width="100" />
+  <img src="screenshots/tr/ss_light_03.jpg" width="100" />
+  <img src="screenshots/tr/ss_light_04.jpg" width="100" />
+  <img src="screenshots/tr/ss_light_05.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_01.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_02.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_03.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_04.jpg" width="100" />
+  <img src="screenshots/tr/ss_dark_05.jpg" width="100" />
 </div>
